@@ -42,6 +42,7 @@ func NewMergeDBFile(path string) (*DBFile, error) {
 // Read 从 offset 处开始读取
 func (df *DBFile) Read(offset int64) (e *Entry, err error) {
 	buf := make([]byte, entryHeaderSize)
+	// ReadAt这里会读取buf大小的数据
 	if _, err = df.File.ReadAt(buf, offset); err != nil {
 		return
 	}
